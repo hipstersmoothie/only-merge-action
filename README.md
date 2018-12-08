@@ -1,44 +1,41 @@
 # GitHub Actions for NPM
 
-This Action for [npm](https://www.npmjs.com/) enables arbitrary actions with the `npm` command-line client, including testing packages and publishing to a registry.
+This Action for [auto-release](https://github.com/hipstersmoothie/auto-release) enables auto releases and PR validation with the `auto-release` command-line client, including publishing to a registry.
 
 ## Usage
 
 An example workflow to build, test, and publish an npm package to the default public registry follows:
 
 ```hcl
-workflow "Build, Test, and Publish" {
+workflow "AutoRelease" {
+  on = "merge"
+  resolves = ["Release"]
+}
+
+workflow "AutoValidate" {
   on = "push"
-  resolves = ["Publish"]
+  resolves = ["PR Validate"]
 }
 
-action "Build" {
-  uses = "actions/npm@master"
-  args = "install"
+action "Release" {
+  uses = "actions/auto-release@master"
+  args = "version"
 }
 
-action "Test" {
-  needs = "Build"
-  uses = "actions/npm@master"
-  args = "test"
-}
-
-action "Publish" {
-  needs = "Test"
-  uses = "actions/npm@master"
-  args = "publish --access public"
-  secrets = ["NPM_AUTH_TOKEN"]
+action "PR Validate" {
+  uses = "actions/auto-release@master"
+  args = "validate"
 }
 ```
 
 ### Secrets
 
-* `NPM_AUTH_TOKEN` - **Optional**. The token to use for authentication with the npm registry. Required for `npm publish` ([more info](https://docs.npmjs.com/getting-started/working_with_tokens))
+- `NPM_AUTH_TOKEN` - **Optional**. The token to use for authentication with the npm registry. Required for `npm publish` ([more info](https://docs.npmjs.com/getting-started/working_with_tokens))
 
 ### Environment variables
 
-* `NPM_REGISTRY_URL` - **Optional**. To specify a registry to authenticate with. Defaults to `registry.npmjs.org`
-* `NPM_CONFIG_USERCONFIG` - **Optional**. To specify a non-default per-user configuration file. Defaults to `$HOME/.npmrc` ([more info](https://docs.npmjs.com/misc/config#npmrc-files))
+- `NPM_REGISTRY_URL` - **Optional**. To specify a registry to authenticate with. Defaults to `registry.npmjs.org`
+- `NPM_CONFIG_USERCONFIG` - **Optional**. To specify a non-default per-user configuration file. Defaults to `$HOME/.npmrc` ([more info](https://docs.npmjs.com/misc/config#npmrc-files))
 
 #### Example
 

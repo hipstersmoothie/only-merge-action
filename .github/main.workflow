@@ -27,7 +27,7 @@ action "Build" {
 action "Docker Tag" {
   needs = ["Build"]
   uses = "actions/docker/tag@master"
-  args = "npm github/npm --no-latest"
+  args = "npm github/auto-release --no-latest"
 }
 
 action "Publish Filter" {
@@ -45,5 +45,5 @@ action "Docker Login" {
 action "Docker Publish" {
   needs = ["Docker Tag", "Docker Login"]
   uses = "actions/docker/cli@master"
-  args = "push github/npm"
+  args = "push github/auto-release"
 }
