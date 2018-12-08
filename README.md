@@ -9,7 +9,7 @@ An example workflow to build, test, and publish an npm package to the default pu
 ```hcl
 workflow "AutoRelease" {
   on = "merge"
-  resolves = ["Release"]
+  resolves = ["Release Filter"]
 }
 
 workflow "AutoValidate" {
@@ -17,13 +17,19 @@ workflow "AutoValidate" {
   resolves = ["PR Validate"]
 }
 
+action "Release Filter" {
+  uses = "actions/bin/filter@master"
+  args = "branch master"
+}
+
 action "Release" {
-  uses = "actions/auto-release@master"
-  args = "version"
+  needs = ["Release Filter"]
+  uses = "hipstersmoothie/auto-release@master"
+  args = "shipit"
 }
 
 action "PR Validate" {
-  uses = "actions/auto-release@master"
+  uses = "hipstersmoothie/auto-release@master"
   args = "validate"
 }
 ```
