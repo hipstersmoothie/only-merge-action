@@ -27,7 +27,7 @@ action "Build" {
 action "Docker Tag" {
   needs = ["Build"]
   uses = "actions/docker/tag@master"
-  args = "npm lisowski/auto-release --no-latest"
+  args = "npm lisowski/only-merge --no-latest"
 }
 
 action "Publish Filter" {
@@ -45,5 +45,5 @@ action "Docker Login" {
 action "Docker Publish" {
   needs = ["Docker Tag", "Docker Login"]
   uses = "actions/docker/cli@master"
-  args = "push lisowski/auto-release"
+  args = "push lisowski/only-merge"
 }
