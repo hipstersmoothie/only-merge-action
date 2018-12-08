@@ -9,10 +9,10 @@ if [ -z "$GITHUB_EVENT_PATH" ]; then
   exit 1
 fi
 
-expected="$1"
+expected="true"
 actual=$(jq -r .base.merged "$GITHUB_EVENT_PATH")
 
 echo "$actual" | grep -Eq "^$expected$" || {
-  echo "action is \"$actual\", not \"$expected\""
+  echo "merged is \"$actual\", not \"$expected\""
   exit 78
 }
