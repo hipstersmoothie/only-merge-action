@@ -11,7 +11,7 @@ LABEL com.github.actions.icon="package"
 LABEL com.github.actions.color="red"
 COPY LICENSE README.md THIRD_PARTY_NOTICE.md /
 
-CMD ["npm i -g auto-release-cli"]
+RUN ["npm i -g auto-release-cli"]
 
 COPY "entrypoint.sh" "/entrypoint.sh"
 ENTRYPOINT ["/entrypoint.sh"]
