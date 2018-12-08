@@ -1,6 +1,6 @@
 # GitHub Actions for NPM
 
-This Action for [auto-release](https://github.com/hipstersmoothie/auto-release) enables auto releases and PR validation with the `auto-release` command-line client, including publishing to a registry.
+This Action for [auto-release](https://github.com/lisowski/auto-release) enables auto releases and PR validation with the `auto-release` command-line client, including publishing to a registry .
 
 ## Usage
 
@@ -24,12 +24,12 @@ action "Release Filter" {
 
 action "Release" {
   needs = ["Release Filter"]
-  uses = "hipstersmoothie/auto-release@master"
+  uses = "lisowski/auto-release@master"
   args = "shipit"
 }
 
 action "PR Validate" {
-  uses = "hipstersmoothie/auto-release@master"
+  uses = "lisowski/auto-release@master"
   args = "validate"
 }
 ```
