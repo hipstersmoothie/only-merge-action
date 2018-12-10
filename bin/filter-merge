@@ -9,7 +9,9 @@ if [ -z "$GITHUB_EVENT_PATH" ]; then
   exit 1
 fi
 
-cat $GITHUB_EVENT_PATH
+# Pretty Print
+jq . < "$GITHUB_EVENT_PATH" # run through jq to pretty print
+
 expected="true"
 actual=$(jq -r .base.merged "$GITHUB_EVENT_PATH")
 
