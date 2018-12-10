@@ -10,8 +10,10 @@ LABEL com.github.actions.description="Filter for only merges"
 LABEL com.github.actions.icon="package"
 LABEL com.github.actions.color="red"
 
-RUN "ls -a ."
-RUN "ls /usr/local/bin"
+ENV PATH="/usr/local/bin:${PATH}"
+
+RUN "which ls"
+RUN "ls ."
 COPY LICENSE README.md THIRD_PARTY_NOTICE.md /
 COPY bin /usr/local/bin/
 COPY "entrypoint.sh" "/entrypoint.sh"
