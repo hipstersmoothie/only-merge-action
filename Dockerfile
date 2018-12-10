@@ -12,8 +12,8 @@ LABEL com.github.actions.color="red"
 
 ENV PATH="/usr/local/bin:${PATH}"
 
-RUN "which ls"
-RUN "ls ."
+RUN which ls
+RUN ls .
 COPY LICENSE README.md THIRD_PARTY_NOTICE.md /
 COPY bin /usr/local/bin/
 COPY "entrypoint.sh" "/entrypoint.sh"
