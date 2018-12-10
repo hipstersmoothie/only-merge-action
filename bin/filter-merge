@@ -10,7 +10,13 @@ if [ -z "$GITHUB_EVENT_PATH" ]; then
 fi
 
 # Pretty Print
-jq . < "$GITHUB_EVENT_PATH" # run through jq to pretty print
+echo $GITHUB_ACTION
+echo $GITHUB_EVENT_NAME
+echo $GITHUB_EVENT_PATH
+echo $GITHUB_WORKSPACE
+echo $GITHUB_REF
+echo jq . < "$GITHUB_EVENT_PATH" # run through jq to pretty print
+
 
 expected="true"
 actual=$(jq -r .base.merged "$GITHUB_EVENT_PATH")
