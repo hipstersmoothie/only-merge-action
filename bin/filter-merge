@@ -9,14 +9,6 @@ if [ -z "$GITHUB_EVENT_PATH" ]; then
   exit 1
 fi
 
-# Pretty Print
-echo $GITHUB_ACTION
-echo $GITHUB_EVENT_NAME
-echo $GITHUB_EVENT_PATH
-echo $GITHUB_WORKSPACE
-echo $GITHUB_REF
-cat $GITHUB_EVENT_PATH
-
 expected="true"
 actual=$(jq -r .pull_request.merged "$GITHUB_EVENT_PATH")
 
