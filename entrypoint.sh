@@ -2,20 +2,14 @@
 
 set -e
 
-cat $GITHUB_EVENT_PATH
-
 url=$(jq -r .repository.clone_url "$GITHUB_EVENT_PATH" |  sed "s/https:\/\///g")
 
 git config --global github.token $GH_TOKEN
-echo Set token
 git config --global http.sslVerify false
-echo Set ssl
-
-echo $url
 
 git remote rm origin
 git remote add origin https://$GH_TOKEN@$url
 git fetch origin
 git branch --set-upstream master origin/master
 
-sh -c "$*"
+git log -1 --pretty=%B | grep -F '[skip ci]' && exit 78
