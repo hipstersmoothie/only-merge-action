@@ -16,9 +16,6 @@ RUN apt-get update && \
 	apt-get clean -y && \
     rm -rf /var/lib/apt/lists/*
 
-ENV PATH="/usr/local/bin:${PATH}"
-
-COPY bin /usr/local/bin/
 COPY LICENSE README.md THIRD_PARTY_NOTICE.md /
 COPY "entrypoint.sh" "/entrypoint.sh"
 
