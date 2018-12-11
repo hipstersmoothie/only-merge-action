@@ -15,8 +15,7 @@ echo $GITHUB_EVENT_NAME
 echo $GITHUB_EVENT_PATH
 echo $GITHUB_WORKSPACE
 echo $GITHUB_REF
-echo jq . < "$GITHUB_EVENT_PATH" # run through jq to pretty print
-
+cat $GITHUB_EVENT_PATH
 
 expected="true"
 actual=$(jq -r .base.merged "$GITHUB_EVENT_PATH")
