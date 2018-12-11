@@ -1,4 +1,4 @@
-FROM tarampampam/node:alpine
+FROM debian:stable-slim
 
 LABEL version="1.0.0"
 LABEL repository="http://github.com/hipstersmoothie/only-merge-action"
@@ -12,7 +12,7 @@ LABEL com.github.actions.color="red"
 
 RUN apt-get update && \
     apt-get install --no-install-recommends -y \
-        jq && \
+        jq git && \
 	apt-get clean -y && \
     rm -rf /var/lib/apt/lists/*
 
