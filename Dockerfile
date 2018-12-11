@@ -7,8 +7,8 @@ LABEL maintainer="Andrew Lisowski <lisowski54@gmail.com>"
 
 LABEL com.github.actions.name="Filter for only merges"
 LABEL com.github.actions.description="Filter for only merges"
-LABEL com.github.actions.icon="package"
-LABEL com.github.actions.color="red"
+LABEL com.github.actions.icon="filter"
+LABEL com.github.actions.color="gray-dark"
 
 RUN apt-get update && \
     apt-get install --no-install-recommends -y \
