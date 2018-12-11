@@ -1,4 +1,4 @@
-FROM debian:stable-slim
+FROM tarampampam/node:alpine
 
 LABEL version="1.0.0"
 LABEL repository="http://github.com/hipstersmoothie/only-merge-action"
