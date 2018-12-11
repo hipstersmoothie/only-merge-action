@@ -18,7 +18,7 @@ echo $GITHUB_REF
 cat $GITHUB_EVENT_PATH
 
 expected="true"
-actual=$(jq -r .base.merged "$GITHUB_EVENT_PATH")
+actual=$(jq -r .pull_request.merged "$GITHUB_EVENT_PATH")
 
 echo "$actual" | grep -Eq "^$expected$" || {
   echo "merged is \"$actual\", not \"$expected\""
