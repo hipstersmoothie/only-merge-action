@@ -13,9 +13,11 @@ echo Set token
 git config --global http.sslVerify false
 echo Set ssl
 
+echo $url
+
 git remote rm origin
 git remote add origin $url
 git fetch origin
-# git branch --set-upstream master upstream/foo
+# git branch --set-upstream master origin/master
 
 sh -c "$*"
